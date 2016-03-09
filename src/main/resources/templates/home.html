@@ -1,0 +1,18 @@
+<html>
+<body>
+
+<a href="/">All</a>
+<a href="/?category=Furniture">Furniture</a>
+<a href="/?category=Alcohol">Alcohol</a>
+<a href="/?category=Toiletries">Toiletries</a>
+<a href="/?category=Shoes">Shoes</a>
+<a href="/?category=Food">Food</a>
+<a href="/?category=Jewelry">Jewelry</a>
+
+<ol>
+{{#purchases}}
+    <li>{{customer.name}} - {{customer.email}} - {{category}} - {{creditCard}} - {{cvv}} - {{date}}</li>
+{{/purchases}}
+</ol>
+</body>
+</html>

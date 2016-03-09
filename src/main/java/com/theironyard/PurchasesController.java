@@ -2,6 +2,9 @@ package com.theironyard;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
@@ -21,7 +24,7 @@ public class PurchasesController {
 
     @PostConstruct
     public void init() throws FileNotFoundException {
-        if (customers.count() == 0 && purchases.count() ==0) {
+        if (customers.count() == 0 && purchases.count() == 0) {
             File cFile = new File("customers.csv");
             Scanner cScanner = new Scanner(cFile);
             cScanner.nextLine();
@@ -46,9 +49,17 @@ public class PurchasesController {
             }
         }
     }
+
+    @RequestMapping(path = "/", method = RequestMethod.GET)
+    public String home(Model model, String category) {
+        if (category != null) {
+            model.addAttribute("purchases", purchases.findByCategory(category));
+        }
+        else {
+            model.addAttribute("purchases", purchases.findAll());
+        }
+        return "home";
+    }
 }
 
-//    In your controller, create a @PostConstruct method called init to parse the CSV files
-//      For each CSV file, you should loop over each line, parse each column into a Customer or Purchase object, and add
-//          it to a repository
-//      Make it so this only happens when the repositories are empty
+
