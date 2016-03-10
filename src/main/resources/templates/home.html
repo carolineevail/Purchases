@@ -9,10 +9,26 @@
 <a href="/?category=Food">Food</a>
 <a href="/?category=Jewelry">Jewelry</a>
 
-<ol>
-{{#purchases}}
-    <li>{{customer.name}} - {{customer.email}} - {{category}} - {{creditCard}} - {{cvv}} - {{date}}</li>
-{{/purchases}}
-</ol>
+<table>
+    <tr align="left">
+        <th>Name</th>
+        <th>Email</th>
+        <th>Date</th>
+        <th>Credit Card</th>
+        <th>CVV</th>
+        <th>Category</th>
+    </tr>
+    {{#purchases}}
+        <tr>
+            <td>{{customer.name}}</td>
+            <td>{{customer.email}}</td>
+            <td>{{category}}</td>
+            <td>{{creditCard}}</td>
+            <td>{{cvv}}</td>
+            <td>{{date}}</td>
+        </tr>
+    {{/purchases}}
+</table>
+
 </body>
 </html>
